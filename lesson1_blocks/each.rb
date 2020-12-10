@@ -1,0 +1,18 @@
+# each.rb
+
+def each(array)
+  counter = 0
+
+  while counter < array.size
+    yield(array[counter])
+    counter += 1
+  end
+
+  array
+end
+
+each([1, 2, 3, 4, 5]) do |num|
+  puts "Iterating through... this is number #{num}."
+end
+
+p(each((1..100).to_a) { |num| puts num }.select(&:odd?))
