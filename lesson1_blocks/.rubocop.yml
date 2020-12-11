@@ -360,3 +360,7 @@ Style/InverseMethods:
 Style/MixinGrouping:
   Description: 'mixins as separate statements'
   Enabled: false
+
+Style/SymbolProc:
+  Description: 'working with arguments, so disabling'
+  Enabled: false
