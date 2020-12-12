@@ -106,20 +106,27 @@ class TodoList
     report
   end
 
-  #  def each
-  #    counter = 0
-  #    while counter < size
-  #      yield(todos[counter])
-  #      counter += 1
-  #    end
-  #    todos
-  #  end
-
   def each
     todos.each do |todo|
       yield(todo)
     end
     self
+  end
+
+  # def select
+  #   result = []
+  #   each do |todo|
+  #     result << todo if yield(todo)
+  #   end
+  #   result
+  # end
+
+  def select
+    result = TodoList.new(title)
+    each do |todo|
+      result << todo if yield(todo)
+    end
+    result
   end
 
   private
@@ -131,15 +138,15 @@ todo1 = Todo.new("Buy eggs")
 todo2 = Todo.new("Clean kitchen")
 todo3 = Todo.new("Go to gallery")
 todo4 = Todo.new("Study RB130")
-list = TodoList.new("Today's Tasks")
 
+list = TodoList.new("Today's Tasks")
 list.add(todo1)
 list.add(todo2)
-list << todo3
-list << todo4
+list.add(todo3)
+list.add(todo4)
 
-# puts list
+todo1.done!
 
-list.each do |todo|
-  puts todo # calls Todo#to_s
-end
+results = list.select { |todo| todo.done? } # you need to implement this method
+
+puts results.inspect
