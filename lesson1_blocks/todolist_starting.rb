@@ -1,4 +1,4 @@
-# todolist_1.rb
+# todolist_starting.rb
 
 # This class represents a todo item and its associated
 # data: name and description. There's also a "done"

@@ -1,4 +1,4 @@
-# todolist_2.rb
+# todolist_select.rb
 
 # removed extraneous tests and comments for next assignment
 
@@ -106,6 +106,22 @@ class TodoList
     report
   end
 
+  #  def each
+  #    counter = 0
+  #    while counter < size
+  #      yield(todos[counter])
+  #      counter += 1
+  #    end
+  #    todos
+  #  end
+
+  def each
+    todos.each do |todo|
+      yield(todo)
+    end
+    self
+  end
+
   private
 
   attr_accessor :todos
@@ -122,4 +138,8 @@ list.add(todo2)
 list << todo3
 list << todo4
 
-puts list
+# puts list
+
+list.each do |todo|
+  puts todo # calls Todo#to_s
+end
