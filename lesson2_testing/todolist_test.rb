@@ -149,5 +149,32 @@ class TodoListTest < MiniTest::Test
     @list.mark_all_done
     assert_equal(output, @list.to_s)
   end
+
+  def test_each
+    new_arr = []
+    @list.each { |todo| new_arr << todo }
+
+    assert_equal([@todo1, @todo2, @todo3], new_arr)
+  end
+
+  def test_each_return_obj
+    ret_obj = @list.each { |todo| todo }
+
+    assert_equal(@list, ret_obj)
+  end
+
+  # def test_select
+  #   new_list = @list.select { |todo| todo }
+  #   assert_equal(new_list.to_a, @list.to_a)
+  # end
+
+  def test_select
+    @todo1.done!
+    list = TodoList.new(@list.title)
+    list.add(@todo1)
+
+    assert_equal(list.title, @list.title)
+    assert_equal(list.to_s, @list.select{ |todo| todo.done? }.to_s)
+  end
 end
 
