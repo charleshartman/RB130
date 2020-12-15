@@ -99,7 +99,7 @@ class TodoList
   end
 
   def to_s
-    report = "---- #{title} ----\n" 
+    report = "---- #{title} ----\n"
     report << todos.map(&:to_s).join("\n")
     report
   end
