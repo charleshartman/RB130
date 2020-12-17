@@ -12,8 +12,7 @@ def decode(str)
   str.each_char do |char|
     val = char.ord
     rot13 <<  if val.between?(65, 77) || val.between?(97, 109) then val + 13
-              elsif val.between?(78, 90) then (64 + (13 - (90 - val))).chr
-              elsif val.between?(110, 122) then (96 + (13 - (122 - val))).chr
+              elsif val.between?(78, 90) || val.between?(110, 122) then val - 13
               else char
               end
   end
@@ -21,32 +20,13 @@ def decode(str)
 end
 
 def coded_names(input_file)
-  encoded = []
-
   File.open(input_file, "r") do |pioneer_log|
     pioneer_log.each_line do |name|
-      encoded << name.chomp
+      puts decode(name)
     end
   end
-
-  encoded
 end
 
 coded_names("input.txt")
 
-p decode("Nqn Ybirynpr")
-
-=begin --> PEDAC
-
-problem/rules:
-  -
-
-input:
-output:
-
-data structure:
-
-algorithm:
-  -
-
-=end
+# p decode("Nqn Ybirynpr")
