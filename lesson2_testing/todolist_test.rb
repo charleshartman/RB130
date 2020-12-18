@@ -10,7 +10,6 @@ Minitest::Reporters.use!
 require_relative 'todolist'
 
 class TodoListTest < MiniTest::Test
-
   def setup
     @todo1 = Todo.new("Buy milk")
     @todo2 = Todo.new("Clean room")
@@ -146,7 +145,7 @@ class TodoListTest < MiniTest::Test
   end
 
   def test_to_s
-    output = <<-OUTPUT.chomp.gsub /^\s+/, ""
+    output = <<-OUTPUT.chomp.gsub(/^\s+/, "")
     ---- Today's Todos ----
     [ ] Buy milk
     [ ] Clean room
@@ -169,7 +168,7 @@ class TodoListTest < MiniTest::Test
   end
 
   def test_to_s_all_marked
-     output = <<~OUTPUT.chomp
+    output = <<~OUTPUT.chomp
     ---- Today's Todos ----
     [X] Buy milk
     [X] Clean room
@@ -188,7 +187,7 @@ class TodoListTest < MiniTest::Test
   end
 
   def test_each_return_obj
-    ret_obj = @list.each { |todo| todo }
+    ret_obj = @list.each { |todo| todo.nil? }
 
     assert_equal(@list, ret_obj)
   end
@@ -204,7 +203,7 @@ class TodoListTest < MiniTest::Test
     list.add(@todo1)
 
     assert_equal(list.title, @list.title)
-    assert_equal(list.to_s, @list.select{ |todo| todo.done? }.to_s)
+    assert_equal(list.to_s, @list.select { |todo| todo.done? }.to_s)
   end
 
   def test_find_by_title
@@ -216,4 +215,3 @@ class TodoListTest < MiniTest::Test
     assert_equal(@todo2.done?, @list.mark_done('Clean room'))
   end
 end
-
