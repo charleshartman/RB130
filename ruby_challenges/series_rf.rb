@@ -13,8 +13,9 @@
 # - 1234
 
 class Series
-  def initialize(base_str)
-    @digits = base_str.each_char.map(&:to_i)
+  def initialize(str)
+    raise ArgumentError, 'argument must be a string' unless str.is_a? String
+    @digits = str.each_char.map(&:to_i)
   end
 
   def slices(n)
@@ -25,6 +26,7 @@ end
 
 bob = Series.new('12345')
 bob.slices(3)
+# Series.new(34)
 
 # p bob.result
 
