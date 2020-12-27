@@ -57,15 +57,11 @@ algorithm:
 
 class Octal
   def initialize(str)
-    @str = str
-    @str = '0' if @str.match?(/[a-zA-Z9]/) || @str.to_i.between?(2, 8)
-    @digits = @str.split('').map(&:to_i).reverse
-    @result = 0
+    @digits = str.match?(/[^0-7]/) ? 0 : str.to_i
   end
 
   def to_decimal
-    @digits.each_with_index { |num, idx| @result += num * (8**idx) }
-    @result
+    @digits.digits.each_with_index.map { |num, idx| num * (8**idx) }.inject(:+)
   end
 end
 

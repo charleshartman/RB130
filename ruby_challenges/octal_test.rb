@@ -1,7 +1,7 @@
 # octal_test.rb
 
 require 'minitest/autorun'
-require_relative 'octal'
+# require_relative 'octal'
 require_relative 'octal_rf'
 
 class OctalTest < Minitest::Test

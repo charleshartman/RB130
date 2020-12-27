@@ -1,16 +1,20 @@
 # octal_rf2.rb - Octal
 
+# student solution I like:
+
 class Octal
   def initialize(str)
-    @str = str
-    @str = '0' if @str.match?(/[a-zA-Z9]/) || @str.to_i.between?(2, 8)
-    @digits = @str.split('').map(&:to_i).reverse
-    @result = 0
+    @digits = str.chars
   end
 
   def to_decimal
-    @digits.each_with_index { |num, idx| @result += num * (8**idx) }
-    @result
+    return 0 if @digits.any? { |digit| digit =~ /[^0-7]/ }
+    @digits
+      .map(&:to_i)
+      .reverse
+      .each_with_index
+      .map { |digit, index| digit * (8**index) }
+      .inject(:+)
   end
 end
 
@@ -20,3 +24,4 @@ p Octal.new('011').to_decimal == 9
 p Octal.new('17').to_decimal == 15
 p Octal.new('130').to_decimal == 88
 p Octal.new('10').to_decimal == 8
+p Octal.new('188').to_decimal
