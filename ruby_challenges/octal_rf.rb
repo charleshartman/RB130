@@ -1,4 +1,4 @@
-# octal.rb - Octal
+# octal_rf.rb - Octal
 
 =begin
 Implement octal to decimal conversion. Given an octal input string, your
