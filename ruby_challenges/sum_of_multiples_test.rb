@@ -1,31 +1,34 @@
 # sum_of_multiples_test.rb
 
 require 'minitest/autorun'
+require 'minitest/reporters'
+Minitest::Reporters.use!
+
 require_relative 'sum_of_multiples'
 
 class SumTest < Minitest::Test
   def test_sum_to_1
-    skip
+    # skip
     assert_equal 0, SumOfMultiples.to(1)
   end
 
   def test_sum_to_3
-    skip
+    # skip
     assert_equal 3, SumOfMultiples.to(4)
   end
 
   def test_sum_to_10
-    skip
+    #skip
     assert_equal 23, SumOfMultiples.to(10)
   end
 
   def test_sum_to_100
-    skip
+    # skip
     assert_equal 2_318, SumOfMultiples.to(100)
   end
 
   def test_sum_to_1000
-    skip
+    # skip
     assert_equal 233_168, SumOfMultiples.to(1000)
   end
 

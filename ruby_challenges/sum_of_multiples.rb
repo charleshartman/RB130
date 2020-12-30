@@ -41,11 +41,8 @@ algorithm:
 require 'pry'
 
 class SumOfMultiples
-  # attr_reader :multiples
-
   def initialize(*multiples)
     @multiples = multiples
-    @multiples = [3, 5] if @multiples.empty?
   end
 
   def to(num)
@@ -56,10 +53,25 @@ class SumOfMultiples
       break if @multiples.all? { |m| m * multiplier >= num }
       multiplier += 1
     end
-    result.uniq.sum
+    result.empty? ? 0 : result.uniq.sum
+  end
+
+  def self.to(num)
+    @multiples = [3, 5]
+    result = []
+    multiplier = 1
+    loop do
+      @multiples.each { |m| result << m * multiplier if m * multiplier < num }
+      break if @multiples.all? { |m| m * multiplier >= num }
+      multiplier += 1
+    end
+    result.empty? ? 0 : result.uniq.sum
   end
 end
 
-# p SumOfMultiples.new.multiples
+p SumOfMultiples.to(4) == 3
+p SumOfMultiples.new(3, 5).to(1) == 0
+p SumOfMultiples.new(3, 5).to(4) == 3
+p SumOfMultiples.new(3, 5).to(10) == 23
 p SumOfMultiples.new(4, 6).to(15) == 30
 p SumOfMultiples.new(43, 47).to(10_000) == 2_203_160
