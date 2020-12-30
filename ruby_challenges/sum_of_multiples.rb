@@ -38,26 +38,22 @@ algorithm:
 
 =end
 
-require 'pry'
-
 class SumOfMultiples
   def initialize(*multiples)
     @multiples = multiples
   end
 
   def to(num)
-    result = []
-    multiplier = 1
-    loop do
-      @multiples.each { |m| result << m * multiplier if m * multiplier < num }
-      break if @multiples.all? { |m| m * multiplier >= num }
-      multiplier += 1
-    end
-    result.empty? ? 0 : result.uniq.sum
+    build_and_sum(num)
   end
 
   def self.to(num)
-    @multiples = [3, 5]
+    SumOfMultiples.new(3, 5).to(num)
+  end
+
+  private
+
+  def build_and_sum(num)
     result = []
     multiplier = 1
     loop do
@@ -68,10 +64,3 @@ class SumOfMultiples
     result.empty? ? 0 : result.uniq.sum
   end
 end
-
-p SumOfMultiples.to(4) == 3
-p SumOfMultiples.new(3, 5).to(1) == 0
-p SumOfMultiples.new(3, 5).to(4) == 3
-p SumOfMultiples.new(3, 5).to(10) == 23
-p SumOfMultiples.new(4, 6).to(15) == 30
-p SumOfMultiples.new(43, 47).to(10_000) == 2_203_160

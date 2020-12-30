@@ -18,7 +18,7 @@ class SumTest < Minitest::Test
   end
 
   def test_sum_to_10
-    #skip
+    # skip
     assert_equal 23, SumOfMultiples.to(10)
   end
 
