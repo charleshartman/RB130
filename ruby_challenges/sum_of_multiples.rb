@@ -40,20 +40,10 @@ algorithm:
 
 class SumOfMultiples
   def initialize(*multiples)
-    @multiples = multiples
+    @multiples = multiples.empty? ? [3, 5] : multiples
   end
 
   def to(num)
-    build_and_sum(num)
-  end
-
-  def self.to(num)
-    SumOfMultiples.new(3, 5).to(num)
-  end
-
-  private
-
-  def build_and_sum(num)
     result = []
     multiplier = 1
     loop do
@@ -61,6 +51,10 @@ class SumOfMultiples
       break if @multiples.all? { |m| m * multiplier >= num }
       multiplier += 1
     end
-    result.empty? ? 0 : result.uniq.sum
+    result.uniq.sum
+  end
+
+  def self.to(num)
+    new.to(num)
   end
 end
