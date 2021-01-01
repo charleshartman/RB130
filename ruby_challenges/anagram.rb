@@ -45,7 +45,7 @@ class Anagram
 
     list.each do |str|
       result << str if str.chars.all? do |c|
-        str.downcase.count(c.downcase) == @key_str.downcase.count(c.downcase)
+        str.downcase.count(c) == @key_str.downcase.count(c)
       end
     end
     result
