@@ -4,7 +4,8 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 Minitest::Reporters.use!
 
-require_relative 'anagram'
+# require_relative 'anagram'
+require_relative 'anagram_rf_sort'
 
 class AnagramTest < Minitest::Test
   def test_no_matches
