@@ -31,11 +31,11 @@ class DNA
 
   def hamming_distance(dna2)
     @dna2 = dna2.chars
-    result = 0
+    distance = 0
     @dna2.each_with_index do |marker, index|
-      result += 1 if marker != @dna1[index]
+      distance += 1 if marker != @dna1[index]
       break if @dna1[index + 1].nil?
     end
-    result
+    distance
   end
 end
