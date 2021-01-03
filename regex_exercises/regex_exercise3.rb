@@ -5,7 +5,7 @@
 # string.
 
 def mystery_math(str)
-  str.sub(/[+\-*\/]/, '?')
+  str.sub(%r([+\-*\/]), '?')
 end
 
 p mystery_math('4 + 3 - 5 = 2')
