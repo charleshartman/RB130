@@ -3,6 +3,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 Minitest::Reporters.use!
+
 require_relative 'word_count'
 
 # Test data version:

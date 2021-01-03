@@ -30,7 +30,7 @@ algorithm:
     (words) when intiializing
   - initialize (dictionary) hash with default value (0)
   - iterate through (words) adding each word to (dictionary) as key and
-    incrementing value +1
+    incrementing value + 1
   - return (dictionary)
 
 =end
