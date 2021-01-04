@@ -49,3 +49,5 @@ class PerfectNumber
     factors_sum > number ? 'abundant' : 'deficient'
   end
 end
+
+p PerfectNumber.classify(33_550_336)
