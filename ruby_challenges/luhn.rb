@@ -88,7 +88,10 @@ class Luhn
   end
 
   def addends
-    check_number.reverse
+    number.digits
+          .map.with_index { |val, idx| idx.odd? ? val * 2 : val }
+          .map { |val| val > 9 ? val - 9 : val }
+          .reverse
   end
 
   def checksum
@@ -97,12 +100,6 @@ class Luhn
 
   def valid?
     checksum % 10 == 0
-  end
-
-  def check_number
-    number.digits
-          .map.with_index { |val, idx| idx.odd? ? val * 2 : val }
-          .map { |val| val > 9 ? val - 9 : val }
   end
 
   def self.create(input)
