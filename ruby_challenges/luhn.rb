@@ -76,7 +76,8 @@ algorithm:
       if value is > 10, subtract 9 from value
       else value
     - sum the (work) array
-    - return the difference between the sum and the next number % 10 == 0
+    - determine the difference between the sum and the next number % 10 == 0
+    - append the check digit to the given number and return
 
 =end
 
