@@ -29,5 +29,4 @@ class RollDice
   end
 end
 
-odin = RollDice.new(4, 6)
-odin.roll.drop
+6.times { RollDice.new(4, 6).roll.drop }
