@@ -70,9 +70,7 @@ class Scrabble
   end
 
   def score
-    score = 0
-    @word.each_char { |char| score += SCORING[char] }
-    score
+    @word.chars.inject(0) { |score, char| score + SCORING[char] }
   end
 
   def self.score(input)
