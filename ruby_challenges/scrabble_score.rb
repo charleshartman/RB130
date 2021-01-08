@@ -66,9 +66,16 @@ class Scrabble
               "Y" => 4, "Z" => 10 }
 
   def initialize(input)
-    @word = input.upcase
-    p SCORING
+    @word = input.nil? ? '' : input.gsub(/\s/, '').upcase
+  end
+
+  def score
+    score = 0
+    @word.each_char { |char| score += SCORING[char] }
+    score
+  end
+
+  def self.score(input)
+    new(input).score
   end
 end
-
-Scrabble.new('str')
