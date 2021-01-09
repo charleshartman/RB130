@@ -52,9 +52,12 @@ class PhoneNumber
 
   def validate_clean(raw_str)
     return BAD_NUM if raw_str.match?(/[a-zA-Z]/)
+
     cleaned = raw_str.gsub(/\D/, '')
-    return BAD_NUM if cleaned.length != 10 && cleaned.length != 11
-    return BAD_NUM if cleaned.length == 11 && cleaned[0] != '1'
+
+    return BAD_NUM if cleaned.length < 10 || cleaned.length > 11 ||
+                      cleaned.length == 11 && cleaned[0] != '1'
+
     cleaned.length == 11 ? cleaned.slice(1..-1) : cleaned
   end
 
