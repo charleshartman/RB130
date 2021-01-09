@@ -43,4 +43,26 @@ algorithm:
 
 # phone_number.rb
 
-class PhoneNumber; end
+class PhoneNumber
+  attr_accessor :number
+
+  def initialize(raw_str)
+    @number = validate_clean(raw_str)
+  end
+
+  def validate_clean(raw_str)
+    return '0000000000' if raw_str.match?(/[a-zA-Z]/)
+    clean = raw_str.gsub(/\D/, '')
+    return '0000000000' if clean.length != 10 && clean.length != 11
+    return '0000000000' if clean.length == 11 && clean[0] != '1'
+    clean.length == 11 ? clean.slice(1..-1) : clean
+  end
+
+  def area_code
+    number[0..2]
+  end
+
+  def to_s
+    "(#{number[0..2]}) #{number[3..5]}-#{number[6..9]}"
+  end
+end
