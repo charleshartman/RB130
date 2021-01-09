@@ -44,18 +44,19 @@ algorithm:
 # phone_number.rb
 
 class PhoneNumber
-  attr_accessor :number
+  attr_reader :number
 
   def initialize(raw_str)
     @number = validate_clean(raw_str)
   end
 
   def validate_clean(raw_str)
-    return '0000000000' if raw_str.match?(/[a-zA-Z]/)
-    clean = raw_str.gsub(/\D/, '')
-    return '0000000000' if clean.length != 10 && clean.length != 11
-    return '0000000000' if clean.length == 11 && clean[0] != '1'
-    clean.length == 11 ? clean.slice(1..-1) : clean
+    bad_num = '0000000000'
+    return bad_num if raw_str.match?(/[a-zA-Z]/)
+    cleaned = raw_str.gsub(/\D/, '')
+    return bad_num if cleaned.length != 10 && cleaned.length != 11
+    return bad_num if cleaned.length == 11 && cleaned[0] != '1'
+    cleaned.length == 11 ? cleaned.slice(1..-1) : cleaned
   end
 
   def area_code
