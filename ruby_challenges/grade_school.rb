@@ -31,14 +31,46 @@ you want?)
 =begin --> PEDAC
 
 problem/rules:
-  -
+  - store a name and grade level for each student
+  - generate a sorted list students by grade level (hash)
+  - return an empty array if no students in given grade lvl
 
-input:
-output:
+input: 
+output: 
 
 data structure:
+  - define class School
+  - initialize with single instance variable (school) to {}
+  - define instance method #add to add students, grade
+  - define instance method to_h that returns the sorted list of each grade
+    and students in that grade
 
 algorithm:
-  -
+  - essentially we are just writing a class that adds students and grades
+    to a hash and returns a sorted hash master list or arrays based on specific
+    grades depending on the method invocation (#to_h or #grade)
+  - also need #add method to add to master hash (school)
 
 =end
+
+class School
+  def initialize
+    @roll_call = Hash.new([])
+  end
+
+  def add(name, grade)
+    roll_call[grade] += [name]
+  end
+
+  def to_h
+    roll_call.each_value(&:sort!).sort.to_h
+  end
+
+  def grade(num)
+    roll_call[num]
+  end
+
+  private
+
+  attr_reader :roll_call
+end
