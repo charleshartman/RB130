@@ -28,3 +28,13 @@ algorithm:
       - (next) to argument - 1 (unless < 1, in which case 'No')
     if this == 'No' then output custom (last) verse
 =end
+
+class BeerSong
+  def verse; end
+  def verses; end
+  def lyrics; end
+
+  private
+
+  def assigns; end
+end
