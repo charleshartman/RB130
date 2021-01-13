@@ -1,6 +1,9 @@
 # beer_song_test.rb
 
 require 'minitest/autorun'
+require 'minitest/reporters'
+Minitest::Reporters.use!
+
 require_relative 'beer_song'
 
 # rubocop:disable Layout/LineLength
@@ -12,28 +15,28 @@ class BeerSongTest < Minitest::Test
   end
 
   def test_another_verse
-    skip
+    # skip
     expected = "3 bottles of beer on the wall, 3 bottles of beer.\n" \
       "Take one down and pass it around, 2 bottles of beer on the wall.\n"
     assert_equal expected, BeerSong.new.verse(3)
   end
 
   def test_verse_2
-    skip
+    # skip
     expected = "2 bottles of beer on the wall, 2 bottles of beer.\n" \
       "Take one down and pass it around, 1 bottle of beer on the wall.\n"
     assert_equal expected, BeerSong.new.verse(2)
   end
 
   def test_verse_1
-    skip
+    # skip
     expected = "1 bottle of beer on the wall, 1 bottle of beer.\n" \
       "Take it down and pass it around, no more bottles of beer on the wall.\n"
     assert_equal expected, BeerSong.new.verse(1)
   end
 
   def test_verse_0
-    skip
+    # skip
     expected = "No more bottles of beer on the wall, no more bottles of beer.\n" \
       "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
     assert_equal expected, BeerSong.new.verse(0)
