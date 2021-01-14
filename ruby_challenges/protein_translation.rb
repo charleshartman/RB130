@@ -66,6 +66,8 @@ algorithm:
 
 =end
 
+class InvalidCodonError < StandardError; end
+
 class Translation
   PROTEINS = { 'Methionine' => ['AUG'], 'Phenylalanine' => ['UUU', 'UUC'],
                'Leucine' => ['UUA', 'UUG'],
@@ -79,5 +81,19 @@ class Translation
       PROTEINS.each { |k, v| protein = k if v.include?(codon) }
     end
     protein
+  end
+
+  def self.of_rna(strand)
+    codons = strand.split(/([A-Z]{3})/).select { |s| s.length == 3 }
+    result = []
+    codons.each do |codon|
+      raise InvalidCodonError unless PROTEINS.values.flatten.include?(codon)
+      PROTEINS.each do |k, v|
+        result << k if v.include?(codon)
+        break if result.last == 'STOP'
+      end
+    end
+    result.pop if result.last == 'STOP'
+    result
   end
 end
