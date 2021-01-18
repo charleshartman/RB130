@@ -29,7 +29,7 @@ class RollDice
   end
 end
 
-6.times { RollDice.new(4, 6).roll.drop_and_sum }
+# 6.times { RollDice.new(4, 6).roll.drop_and_sum }
 # one_d20 = RollDice.new(1, 20)
 # one_d20.roll
 # four_d6 = RollDice.new(4, 6)
