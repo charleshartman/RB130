@@ -21,7 +21,7 @@ class RollDice
     rolls.times { result << rand(1..sided) }
   end
 
-  def drop
+  def drop_and_sum
     puts "Dropping lowest roll and totaling..."
     sleep 0.75
     result.sort!.shift
@@ -29,4 +29,8 @@ class RollDice
   end
 end
 
-6.times { RollDice.new(4, 6).roll.drop }
+6.times { RollDice.new(4, 6).roll.drop_and_sum }
+# one_d20 = RollDice.new(1, 20)
+# one_d20.roll
+# four_d6 = RollDice.new(4, 6)
+# four_d6.roll
