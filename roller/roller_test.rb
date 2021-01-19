@@ -20,6 +20,13 @@ class RollDiceTest < Minitest::Test
     assert_instance_of RollDice, four_d6
   end
 
+  def test_chance_returns_num_within_range
+    one_d20 = RollDice.new(1, 20)
+    one_d20.roll
+    result = one_d20.result.first
+    assert((1..20).include?(result))
+  end
+
   def test_roll_outputs
     two_d8 = RollDice.new(2, 8)
     two_d8.roll

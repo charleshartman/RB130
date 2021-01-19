@@ -1,8 +1,7 @@
 # roller.rb
 
 class RollDice
-  attr_reader :rolls, :sided
-  attr_accessor :result
+  attr_reader :rolls, :sided, :result
 
   def initialize(rolls, sided)
     @rolls = rolls
@@ -17,15 +16,17 @@ class RollDice
     self
   end
 
-  def chance
-    rolls.times { result << rand(1..sided) }
-  end
-
   def drop_and_sum
     puts "Dropping lowest roll and totaling..."
     sleep 0.75
     result.sort!.shift
     puts "Your total is #{result.sum}"
+  end
+
+  private
+
+  def chance
+    rolls.times { result << rand(1..sided) }
   end
 end
 
