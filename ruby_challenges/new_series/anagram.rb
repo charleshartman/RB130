@@ -27,7 +27,7 @@ algorithm:
   - iterate through (possibles)
       if word converted to array and sorted is the same as possible converted
       to array and sorted:
-      [word.chars.sort == possible.chars.sort 
+      [word.chars.sort == possible.chars.sort
         then add to (anagrams)]
   - return (anagrams)
 =end
