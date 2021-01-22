@@ -59,17 +59,9 @@ algorithm:
 =end
 
 class PerfectNumber
-  def self.sum_of_divisors(number)
-    divisors = []
-    1.upto(number - 1) do |num|
-      divisors << num if number % num == 0
-    end
-    divisors.sum
-  end
-
   def self.classify(number)
     raise StandardError if number < 1
-    result = sum_of_divisors(number)
+    result = 1.upto(number - 1).select { |num| number % num == 0 }.sum
     return 'perfect' if result == number
     result < number ? 'deficient' : 'abundant'
   end
