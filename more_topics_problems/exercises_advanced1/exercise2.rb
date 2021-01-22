@@ -1,11 +1,13 @@
 # exercise2.rb
 
 # Group 1
-# my_proc = proc { |thing| puts "This is a #{thing}." }
-# puts my_proc
-# puts my_proc.class
-# my_proc.call
-# my_proc.call('cat')
+my_proc = proc { |thing| puts "This is a #{thing}." }
+puts my_proc
+puts my_proc.class
+my_proc.call
+my_proc.call('cat')
+
+puts '-------------------------'
 
 # Group 2
 my_lambda = lambda do |thing|
@@ -15,10 +17,11 @@ my_second_lambda = ->(thing) { puts "This is a #{thing}." }
 puts my_lambda
 puts my_second_lambda
 puts my_lambda.class
+puts my_second_lambda.class
 my_lambda.call('dog')
 my_second_lambda.call('cat')
 
-# my_lambda.call
+my_lambda.call
 # my_third_lambda = Lambda.new { |thing| puts "This is a #{thing}." }
 
 # Group 3
