@@ -34,14 +34,14 @@ algorithm:
 
 class Anagram
   def initialize(word)
-    @word = word
+    @word = word.downcase
   end
 
   def match(arr)
     arr.each_with_object([]) do |str, anagrams|
-      next if str.downcase == @word.downcase
+      next if str.downcase == @word
       anagrams << str \
-      if str.downcase.chars.sort.join == @word.downcase.chars.sort.join
+      if str.downcase.chars.sort.join == @word.chars.sort.join
     end
   end
 end
