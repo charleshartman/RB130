@@ -2,7 +2,7 @@
 
 require 'minitest/autorun'
 require_relative 'speech'
-
+# rubocop: disable Layout/LineLength
 class SpeechTest < Minitest::Test
   def test_1
     speech = Speech.new("One two three four five six seven eight nine ten")
@@ -23,4 +23,5 @@ class SpeechTest < Minitest::Test
     speech = Speech.new("Though passion may have strained, it must not break our bonds of affection.")
     assert_equal("Though passion mAy have deniartS, iT must not bReAk our bonds oF noitceffA.", speech.your_method)
   end
+  # rubocop: enable Layout/LineLength
 end
