@@ -39,16 +39,14 @@ algorithm:
 =end
 
 class Speech
-  attr_accessor :words
-
   def initialize(str)
     @words = str.split
   end
 
   def your_method
     result = []
-    (0..words.length - 1).each do |x|
-      result << ((x + 1) % 3 == 0 ? every_second(words[x]) : words[x])
+    (0..words.length - 1).each do |idx|
+      result << ((idx + 1) % 3 == 0 ? every_second(words[idx]) : words[idx])
     end
 
     result.map! do |word|
@@ -57,6 +55,10 @@ class Speech
 
     result.join(' ')
   end
+
+  private
+
+  attr_accessor :words
 
   def every_second(word)
     word.chars
