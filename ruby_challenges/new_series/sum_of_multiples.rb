@@ -14,18 +14,18 @@
 problem/rules:
   - given a natural number and a collection of other numbers, find the sum of
     all multiples of each number in the collection up to, but not including the
-    given natual number... we could call this number the (limit) and the
+    given natual number... we could call this number the (num) and the
     collection the (multiples)
   - if no collection is provided, default to [3, 5]
 
-input: single integer (limit) and collection of integers (multiples)
+input: single integer (num) and collection of integers (multiples)
 output: sum of resultant array of multiples
 
 data structure:
   - define class SumOfMultiples
   - define constructor #initialize with one parameter (*multiples)
-  - define instance method #to with one parameter (limit)
-  - define class method #to with one parameter (limit)
+  - define instance method #to with one parameter (num)
+  - define class method #to with one parameter (num)
 
 algorithm:
   - constructor #initialize:
@@ -36,15 +36,17 @@ algorithm:
     - inotialize multiplier to 1
     - initialize result to []
     - iterate through multiples array
-      - if element * multiplier is less than (limit)
+      - if element * multiplier is less than (num)
         - then push to result array
         - break if all elements * multiplier are greater than or equal to upper
         - increment multiplier by 1
     - return result summed
 
   - class method #to:
-    - create new SumOfMultiples object and pass through (limit)
+    - create new SumOfMultiples object and pass through (num)
 =end
+
+# =begin
 
 class SumOfMultiples
   attr_reader :multiples
@@ -53,19 +55,49 @@ class SumOfMultiples
     @multiples = multiples.empty? ? [3, 5] : multiples
   end
 
-  def to(limit)
+  def to(num)
     result = []
     multiplier = 1
-    until multiples.all? { |n| (n * multiplier) >= limit }
-      multiples.each do |num|
-        result << num * multiplier if num * multiplier < limit
-      end
+    until multiples.all? { |n| (n * multiplier) >= num }
+      multiples.each { |m| result << m * multiplier if m * multiplier < num }
       multiplier += 1
     end
     result.uniq.sum
   end
 
-  def self.to(limit)
-    new.to(limit)
+  def self.to(num)
+    new.to(num)
   end
 end
+
+# =end
+
+=begin -> Book Solution
+
+class SumOfMultiples
+  attr_reader :multiples
+
+  def self.to(num)
+    SumOfMultiples.new(3, 5).to(num)
+  end
+
+  def initialize(*multiples)
+    @multiples = *multiples
+  end
+
+  def to(num)
+    (1...num).select do |current_num|
+      any_multiple?(current_num)
+    end.sum
+  end
+
+  private
+
+  def any_multiple?(num)
+    multiples.any? do |multiple|
+      (num % multiple).zero?
+    end
+  end
+end
+
+=end

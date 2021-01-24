@@ -47,4 +47,9 @@ class SumTest < Minitest::Test
     # skip
     assert_equal 2_203_160, SumOfMultiples.new(43, 47).to(10_000)
   end
+
+  def test_configurable_with_empty_collection
+    # skip
+    assert_equal 23, SumOfMultiples.new.to(10)
+  end
 end
