@@ -14,7 +14,7 @@
 problem/rules:
   - given a natural number and a collection of other numbers, find the sum of
     all multiples of each number in the collection up to, but not including the
-    given natual number... we could call this number the (upper_limit) and the
+    given natual number... we could call this number the (limit) and the
     collection the (multiples)
   - if no collection is provided, default to [3, 5]
 
@@ -24,8 +24,8 @@ output: sum of resultant array of multiples
 data structure:
   - define class SumOfMultiples
   - define constructor #initialize with one parameter (*multiples)
-  - define instance method #to with one parameter (upper_limit)
-  - define class method #to with one parameter (upper_limit)
+  - define instance method #to with one parameter (limit)
+  - define class method #to with one parameter (limit)
 
 algorithm:
   - constructor #initialize:
@@ -36,14 +36,14 @@ algorithm:
     - inotialize multiplier to 1
     - initialize result to []
     - iterate through multiples array
-      - if element * multiplier is less than (upper_limit)
+      - if element * multiplier is less than (limit)
         - then push to result array
         - break if all elements * multiplier are greater than or equal to upper
         - increment multiplier by 1
     - return result summed
-  
+
   - class method #to:
-    - create new SumOfMultiples object and pass through (upper_limit)
+    - create new SumOfMultiples object and pass through (limit)
 =end
 
 class SumOfMultiples
@@ -53,20 +53,19 @@ class SumOfMultiples
     @multiples = multiples.empty? ? [3, 5] : multiples
   end
 
-  def to(upper_limit)
+  def to(limit)
     result = []
     multiplier = 1
-    loop do
+    until multiples.all? { |n| (n * multiplier) >= limit }
       multiples.each do |num|
-        result << num * multiplier if num * multiplier < upper_limit
+        result << num * multiplier if num * multiplier < limit
       end
-      break if multiples.all? { |n| (n * multiplier) >= upper_limit }
       multiplier += 1
     end
     result.uniq.sum
   end
 
-  def self.to(upper_limit)
-    new.to(upper_limit)
+  def self.to(limit)
+    new.to(limit)
   end
 end
