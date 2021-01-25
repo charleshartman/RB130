@@ -39,9 +39,15 @@ class BeerSong
     end
   end
 
-  def verses; end
+  def verses(first, last)
+    (last..first).to_a.reverse.inject('') do |str, num|
+      str + verse(num) + "\n"
+    end.chomp
+  end
 
-  def lyrics; end
+  def lyrics
+    verses(99, 0)
+  end
 
   private
 
