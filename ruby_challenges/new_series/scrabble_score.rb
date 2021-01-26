@@ -45,7 +45,7 @@ input: string (word)
 output: integer (summed_score)
 
 data structure:
-  - define class Scrabble with one parameter (input)
+  - define class Scrabble with one parameter (word)
   - define contructor #initialize with one parameter
     - assign @word to the return of #clean_string helper method
   - define constant (SCORING) hash dictionary
@@ -63,7 +63,7 @@ algorithm:
 =end
 
 class Scrabble
-  attr_reader :input
+  attr_reader :word
 
   SCORING = { "A" => 1, "B" => 3, "C" => 3, "D" => 2, "E" => 1, "F" => 4,
               "G" => 2, "H" => 4, "I" => 1, "J" => 8, "K" => 5, "L" => 1,
@@ -71,15 +71,15 @@ class Scrabble
               "S" => 1, "T" => 1, "U" => 1, "V" => 4, "W" => 4, "X" => 8,
               "Y" => 4, "Z" => 10 }
 
-  def initialize(input)
-    @input = input
+  def initialize(word)
+    @word = word.nil? ? '' : word.gsub(/\s+/, '').upcase
   end
 
-  def score; end
+  def score
+    word.chars.inject(0) { |sum, char| sum + SCORING[char] }
+  end
 
-  def self.score; end
+  def self.score(word)
+    new(word).score
+  end
 end
-
-p Scrabble.new(" \t\nwoRD89")
-p Scrabble.new('')
-p Scrabble.new(nil)
