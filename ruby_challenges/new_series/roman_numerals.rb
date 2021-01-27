@@ -94,6 +94,7 @@ class RomanNumeral
     @num = num.digits
   end
 
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def to_roman
     idx = 0
     num.each_with_object([]) do |digit, result|
@@ -107,4 +108,5 @@ class RomanNumeral
       idx += 1
     end.reverse.join
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 end
