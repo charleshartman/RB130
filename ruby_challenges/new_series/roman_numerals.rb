@@ -95,10 +95,9 @@ class RomanNumeral
   end
 
   def to_roman
-    result = []
     idx = 0
-    while idx < num.length
-      case num[idx]
+    num.each_with_object([]) do |digit, result|
+      case digit
       when 1..3   then result << ROMAN[idx][0] * num[idx]
       when 4      then result << ROMAN[idx][0] + ROMAN[idx][1]
       when 5      then result << ROMAN[idx][1]
@@ -106,7 +105,6 @@ class RomanNumeral
       when 9      then result << ROMAN[idx][0] + ROMAN[idx][2]
       end
       idx += 1
-    end
-    result.reverse.join
+    end.reverse.join
   end
 end
