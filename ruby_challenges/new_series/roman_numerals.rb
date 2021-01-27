@@ -96,18 +96,16 @@ class RomanNumeral
 
   def to_roman
     result = []
-    index = 0
-    while index < num.length
-      val = num[index]
-      case val
-      when 0 then result << ''
-      when 1..3 then result << ROMAN[index][0] * val
-      when 4 then result << ROMAN[index][0] + ROMAN[index][1]
-      when 5 then result << ROMAN[index][1]
-      when 6..8 then result << ROMAN[index][1] + ROMAN[index][0] * (val - 5)
-      when 9 then result << ROMAN[index][0] + ROMAN[index][2]
+    idx = 0
+    while idx < num.length
+      case num[idx]
+      when 1..3   then result << ROMAN[idx][0] * num[idx]
+      when 4      then result << ROMAN[idx][0] + ROMAN[idx][1]
+      when 5      then result << ROMAN[idx][1]
+      when 6..8   then result << ROMAN[idx][1] + ROMAN[idx][0] * (num[idx] - 5)
+      when 9      then result << ROMAN[idx][0] + ROMAN[idx][2]
       end
-      index += 1
+      idx += 1
     end
     result.reverse.join
   end
