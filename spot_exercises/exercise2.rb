@@ -8,7 +8,6 @@ def test
   yield(2)
 end
 
-# add code here
 to_s = proc { |n| p n.to_i }
 to_i = proc { |n| p n.to_s }
 
