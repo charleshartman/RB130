@@ -31,6 +31,8 @@ class RollDice
 end
 
 # 6.times { RollDice.new(4, 6).roll.drop_and_sum }
-RollDice.new(1, 20).roll
-RollDice.new(4, 6).roll.drop_and_sum
-RollDice.new(1, 100).roll
+# RollDice.new(1, 20).roll
+# RollDice.new(4, 6).roll.drop_and_sum
+# RollDice.new(1, 100).roll
+6.times { RollDice.new(3, 6).roll }
+
